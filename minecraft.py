@@ -50,7 +50,7 @@ print('EULA text has been created...')
 a = open('mine.bat', 'w+')
 b = '''
     
- java -Xmx1024M -Xms1024M -jar server.jar nogui
+ java -Xmx1024M -Xms1024M -jar server.jar
 
  '''
 a.write(str(b))
