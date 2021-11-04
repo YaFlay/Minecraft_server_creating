@@ -73,6 +73,7 @@ time = 'Date today: '+ str(date)+ ', time now '+str( clock.strftime('%H.%M.%S'))
 print(str(time))
 print('Starting to create a server!')
 # Give hor user time
+# if directory in [G:/, D:/, F:/]:
 
 # 
 # 
@@ -101,7 +102,7 @@ eula=true
      print('EULA text has been created...')
      #  creating EULA text, and write in eula.txt
      # this is 4rd checkbox
-     messagebox.showinfo('EULA and folders create!', 'Press OK for leave')
+     messagebox.showinfo('EULA', 'EULA and folders create! Press OK for leave')
 
 def starting_server_button():  
      bat = open('mine.bat', 'w+')
@@ -114,14 +115,14 @@ java -Xmx1024M -Xms1024M -jar server.jar
      print('Create .bat file...')
      url = 'https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar'
      urllib.request.urlretrieve(url, 'C:/minecraft/server.jar') 
-     messagebox.showinfo('.bat file and core created', 'Press OK for leave')
+     messagebox.showinfo('bat file created', '.bat file and core created Press OK for leave')
 
 #     first checkbox command
 def server_properties_button():
      server_properties = open('server.properties', 'w+')
      server_properties.write(str(server_text))
      print('Creating server.properties')
-     messagebox.showinfo('Minecraft server.properties created', 'Press OK for leave')
+     messagebox.showinfo('server.properties created', 'Minecraft server.properties created Press OK for leave')
      
      # second checkbox command
 def close_command_button():
@@ -130,24 +131,46 @@ def close_command_button():
      print(directory)
      py = open('minecraft.py', 'r')
      py.close()
+     if directory in [ 'G:/, D:/, F:/' ]:
+          os.replace(str(directory)+'minecraft.py', 'C:/minecraft/minecraft.py')
+          os.chdir('C:/minecraft')
+     else:
+          print(' ')
      os.replace(str(directory)+'/minecraft.py', 'C:/minecraft/minecraft.py')
      os.chdir('C:/minecraft')
-     messagebox.showinfo('minecraft.py closed and deleted!', 'Press OK for leave')
+     messagebox.showinfo('file deleted', 'minecraft.py closed and deleted! Press OK for leave')
      # third checkbox command
 def ok(): 
      window.destroy()
      window.quit()
-     messagebox.showinfo('Window closed', 'Press OK for leave')
-     # ok button
+     messagebox.showinfo('Close', 'Window closed Press OK for leave')
+     # take commands for checkboxes
 def start():
      os.chdir('C:/minecraft')
      os.startfile('mine.bat', 'open')
      os.startfile('server.properties', 'open')
-     messagebox.showinfo('Server started!!', 'Press OK for leave')
-#  start server button
+     messagebox.showinfo('Server_start', 'Server started!! Press OK for leave')
+
 # start code
 def folder():
      os.startfile('C:/minecraft')
+     # start folder
+
+def java_windows():
+     java='https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245476_4d5417147a92418ea8b615e228bb6935'
+     urllib.request.urlretrieve(java, 'C:/minecraft/jre-8u311-windows-i586-iftw.exe')
+     os.chdir('C:/minecraft')
+     os.startfile(r'C:/minecraft/jre-8u311-windows-i586-iftw.exe')
+     messagebox.showinfo('Java_32', 'Java has been downloaded! Press ok for leave')
+     # for downloading java 8u311 for windows
+
+def java_windows_64():
+     java_64='https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245469_4d5417147a92418ea8b615e228bb6935'
+     urllib.request.urlretrieve(java_64, 'C:/minecraft/jre-8u311-windows-x64.exe')
+     os.chdir('C:/minecraft/')
+     os.startfile(r'C:/minecraft/jre-8u311-windows-x64.exe')
+     messagebox.showinfo('Java_64','Java has been downloaded! Press ok for leave')
+#      java for x64
 # open folder
 # take def for checkboxes
 
@@ -184,6 +207,13 @@ button = Button(window, text='OK', command=ok)
 button.grid(column=0, row=7)
 starting_button = Button(window, text='Start server and open server.properties!', command=start)
 starting_button.grid(column=0, row=6)
+# starting server button
+java_64=Button(window, text='Downloading Java for x64', command=java_windows_64)
+java_64.grid(column=0, row=8)
+# java for x64
+java_32=Button(window, text='Downloading Java for x32', command=java_windows)
+java_32.grid(column=3, row=8)
+# java for x32
 
 window.mainloop()
 # create window and button for start server
