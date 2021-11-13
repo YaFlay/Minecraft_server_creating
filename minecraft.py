@@ -3,77 +3,21 @@
 # if u dont use Python 3, dont use this. urllib dont working in Python2
 # if u seek some bug, write me in Telegram: @YaFlay
 # if u dont have C:/ disk, dont use this Python code, this crashed the code
-# Version: 1.3.2!
-import os
+# Version: 1.3.3!
+# for free using with my link for my github.com
+import os 
 import urllib.request
 import datetime
 import psutil
 import time
 import shutil
-from urllib.request import urlopen
+from urllib.request import urlopen, urlretrieve
 from tkinter import *
 from tkinter import Checkbutton
 from tkinter import messagebox
 # import modules
 
-backup_text = '''
-# Back up file
-import os
-import datetime
-import time
-import shutil
-from tkinter import *
-from tkinter import Checkbutton
-from distutils.dir_util import copy_tree
-
-
-if os.path.isdir('C:/backup-minecraft-server'):
-    os.chdir('C:/minecraft/backup')
-else:  
-    dir = os.mkdir('C:/backup-minecraft-server/')
-    os.chdir(str(dir))
-
-date1 = datetime.date.today()
-clock = datetime.datetime.today
-a = open('logs-'+str(date1)+'.txt', 'w+')
-folder1 = 'C:/minecraft/'
-folder2 = 'C:/backup-minecraft-server'
-text_for_log = 'Folder or file '+ str(folder1)+'  copied to '+str(folder2)+'. Date on this moment: '+ str(date1) +'. Time on this moment: '+str( clock('%H.%M.%S'))+'File:'
-
-
-def log_button():
-    directory = ('C:/backup-minecraft-server/world'+str(date1))
-    if os.path.isdir(str(directory)):
-        print(directory)
-    else: os.mkdir(str(directory))
-
-    for folder_name in os.listdir('C:/minecraft/',):
-     path = 'C:/minecraft/' + folder_name
-    for folder_name in os.listdir(path):
-       copy_tree(path, str(directory))
-    a = open('logs-'+str(date1)+'.txt', 'w+')
-    a.write(
-        str(text_for_log)+'World folder'
-    )
-    a.close()
-
-
-window = Tk()
-window.title('Minecraft backup')
-window.geometry('500x300') #500/\, 250>
-# creating window
-log = BooleanVar()  
-log.set(True)
-log=Checkbutton(window, text='World folder copyed', var=log, command=log_button)  
-log.grid(column=1, row=1)
-
-
-
-
-window.mainloop()
-
-'''
-# backup.py text
+directory = os.getcwd()
 server_text = '''#Minecraft server properties
 #Time dont aviable
 
@@ -126,23 +70,20 @@ allow-flight=false
 max-world-size=29999984
 '''
 # This is minecraft properties file
-
-directory = os.getcwd()
-print(directory)
 os.chdir(str(directory))
 minecraft_py = os.path.isfile('minecraft_server_installer.py')
 if minecraft_py:
      minecraft_nam = str('minecraft_server_installer.py')
-     file = open('file_name.txt', 'w+')
-     file.write(str(minecraft_nam))
-     file.close()
+     with open('file_name.txt', 'w+') as file:
+          file.write(str(minecraft_nam))
+          file.close()
 else:
      minecraft_nam = str('minecraft_server_installer.exe')
      file = open('file_name.txt', 'w+')
      file.write(str(minecraft_nam))
      file.close()
      print(minecraft_nam)
-# creating file 
+# creating file with backup text and with name python scripy
 file = open('file_name.txt', 'r')
 minecraft_name = str(file.read())
 file.close()
@@ -210,7 +151,7 @@ def server_properties_button():
      print('Creating server.properties')
      messagebox.showinfo('server.properties created', 'Minecraft server.properties created Press OK for leave')
      
-     # second checkbox command
+# second checkbox command
 def close_command_button():
      os.chdir(str(directory))
      print('Your directory'+directory)
@@ -224,22 +165,21 @@ def close_command_button():
      os.replace(str(directory)+'/'+str(minecraft_name), 'C:/minecraft/'+str(minecraft_name))
      os.chdir('C:/minecraft')
      messagebox.showinfo('file deleted', 'minecraft.exe closed and deleted! Press OK for leave')
-     # third checkbox command
+# third checkbox command
 def ok(): 
      window.destroy()
      window.quit()
-     messagebox.showinfo('Close', 'Window closed Press OK for leave')
      # take commands for checkboxes
+
 def start():
      os.chdir('C:/minecraft')
-     os.startfile('mine.bat', 'open')
-     os.startfile('server.properties', 'open')
+     os.system('start mine.bat')
      messagebox.showinfo('Server_start', 'Server started!! Press OK for leave')
+#  starting server
 
-# start code
 def folder():
      os.startfile('C:/minecraft')
-     # start folder
+# start folder
 
 def java_windows():
      java='https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245476_4d5417147a92418ea8b615e228bb6935'
@@ -262,7 +202,7 @@ def java_windows():
      os.remove('jre-8u311-windows-i586-iftw.exe')
      messagebox.showinfo('Java_32', 'Java has been downloaded! Press ok for leave')
                
-     # for downloading java 8u311 for windows
+# for downloading java 8u311 for windows
 
 def java_windows_64():
      java_64='https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245469_4d5417147a92418ea8b615e228bb6935'
@@ -282,7 +222,7 @@ def java_windows_64():
      pass
      os.remove('jre-8u311-windows-x64.exe')
      messagebox.showinfo('Java_64','Java has been downloaded! Press ok for leave')
-
+#  downloading x64 java
 def delete_directory():
      os.chdir('C:/minecraft')
      if os.path.isfile('eula.txt'):
@@ -313,7 +253,7 @@ def delete_directory():
      if os.path.isfile('whitelist.json'):
           os.remove('whitelist.json')
           # deleting whitelist.json
-
+#  deleting all files in C:/minecraft
      minecraft_files = os.path.isfile(minecraft_name)
      if minecraft_files:
           minecraft_exe = open(minecraft_name)
@@ -334,24 +274,44 @@ def delete_directory():
           # delete directory with files
           
 def backup_button():
-     if os.path.isdir('C:/minecraft/backup/') == True:
+     if os.path.isdir('C:/minecraft/backup/'):
           os.chdir('C:/minecraft/backup')
      else: 
           os.mkdir('C:/minecraft/backup')
           os.chdir('C:/minecraft/backup')
      # create folder
+
+     url_backup_text='https://raw.githubusercontent.com/YaFlay/Minecraft_server_creating/main/backup.py'
      if os.path.isfile('C:/minecraft/backup/backup.py'):
-          os.startfile('backup.py')
-     else:
-          back_up = open('backup.py', 'w+')
-          back_up.write(str(backup_text))
-          os.startfile('backup.py', '')
+          os.remove('C:/minecraft/backup/backup.py')
+     urllib.request.urlretrieve(url_backup_text, 'C:/minecraft/backup/backup.py')
+     os.system('python3 C:/minecraft/backup/backup.py')
+     print('Minecraft back up started!')
      
-     
+def python_install():
+     url = 'https://www.python.org/ftp/python/3.10.0/python-3.10.0-amd64.exe'
+     urllib.request.urlretrieve(url, 'C:/minecraft/python-3.10.0-amd64.exe')
+     os.chdir('C:/minecraft/')
+     os.startfile(r'C:/minecraft/python-3.10.0-amd64.exe')
+     for proce_64 in psutil.process_iter():
+          name_64 = proce_64.name()
+          if name_64 == 'python-3.10.0-amd64.exe':
+                print('Wait...')
+                time.sleep(30)
+                print('And 10 sec more')
+                time.sleep(10)
+                named_64 = proce_64.name()
+                if not named_64 == 'python-3.10.0-amd64.exe':
+                 proce_64.kill()
+                 print('Process has been eliminated!')
+          pass
+     pass
+     os.remove('python-3.10.0-amd64.exe')
+     messagebox.showinfo('Python','Python has been downloaded! Press ok for leave')
 
 # open folder
-# take def for checkboxes
-
+# take def for checkboxes and buttons
+# 
 window = Tk()
 window.title('Minecraft server')
 window.geometry('500x300') #500/\, 250>
@@ -394,13 +354,17 @@ java_64=Button(window, text='Downloading Java for x64', command=java_windows_64)
 java_64.grid(column=0, row=11)
 # java for x64
 java_32=Button(window, text='Downloading Java for x32', command=java_windows)
-java_32.grid(column=2, row=11)
+java_32.grid(column=1, row=11)
 # java for x32
-backup=Button(window, text='Backup server', command=backup_button)
+backup=Button(window, text='Backup minecraft-server files', command=backup_button)
 backup.grid(column=1, row=12)
-
+# Backup button
+python_download=Button(window, text='Downloading Python with official site', command=python_install)
+python_download.grid(column=0, row=12)
+# downloading python
 window.mainloop()
 os.chdir(str(directory))
 os.remove('file_name.txt')
 # create window and button for start server
 
+# Thanks for using!
