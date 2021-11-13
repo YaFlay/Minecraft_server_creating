@@ -84,10 +84,10 @@ window = Tk()
 window.title('Minecraft backup')
 window.geometry('500x300') #500/\, 250>
 # creating window
-world=Button(window, text='World folder copyed', var=world, command=world_button)  
+world=Button(window, text='World folder copyed', command=world_button)  
 world.grid(column=1, row=1)
 # world folder
-log=Button(window, text='Copy server files', var=log, command=log_button)  
+log=Button(window, text='Copy server files', command=log_button)  
 log.grid(column=2, row=1)
 # create log folder
 
