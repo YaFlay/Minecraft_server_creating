@@ -1,20 +1,18 @@
-import tkinter
 import os
-# from urllib.request import urlretrieve
-import urllib
-import urllib.request
+# import modules
 
-#Minecraft server properties
-#Time dont aviable
-text_for_server_properties= '''
+text_for_server_properties= '''#Minecraft server properties
+#Time dont aviable!
 broadcast-rcon-to-ops=true
 view-distance=''' 
-viev = input('Viev distnce: ')
+viev = int(input('Viev distnce: '))
+# View distance in chanks
 text_for_server_properties_2='''
 enable-jmx-monitoring=false
 server-ip=
 resource-pack-prompt='''
 resource_pack = input('Resource pack link: ')
+#  resorce pack link
 text_for_server_properties_3 = '''
 rcon.port=25575
 gamemode='''
@@ -23,7 +21,8 @@ if gamemode == 's':
     gamemode = 'survival'
 else:
     gamemode = 'creative'
-text_for_server_properties_4='''
+# game mode on server
+text_for_server_properties_5='''
 server-port=25565
 allow-nether=true
 enable-command-block=false
@@ -43,10 +42,22 @@ force-gamemode=false
 rate-limit=0
 hardcore=false
 whitelist='''
-whitelist = input('White list allow? (true/false)')
-'''
+whitelist = input('White list allow? (t/f)')
+if whitelist == 't':
+    whitelist = 'true'
+else: 
+    whitelist = 'false'
+# white list for server
+text_for_server_properties_4 = '''
 broadcast-console-to-ops=true
-pvp=true
+pvp='''
+pvp = input('Pvp: (t/f)')
+if pvp == 't':
+    pvp = 'true'
+else: 
+    pvp = 'false'
+#  pvp on server
+text_for_server_properties_6 = '''
 spawn-npcs=true
 spawn-animals=true
 snooper-enabled=true
@@ -67,10 +78,20 @@ enable-status=true
 allow-flight=false
 max-world-size=29999984
 '''
-server_properties=open('C:/minecraft/server.properties', 'w+')
+if os.path.isfile('C:/minecraft/server.properties'):
+    os.remove('C:/minecraft/server.properties')
+    server_properties=open('C:/minecraft/server.properties', 'w+')
+else:
+    server_properties = open('C:/minecraft/server.properties', 'w+')
+#  deleting and creating new file or creating new file
 server_properties.write(str(text_for_server_properties))
 server_properties.write(str(viev))
 server_properties.write(str(text_for_server_properties_2))
+server_properties.write(str(resource_pack))
+server_properties.write(str(text_for_server_properties_3))
 server_properties.write(str(gamemode))
-server_properties.write(str(text_for_server_properties_4))
+server_properties.write(str(text_for_server_properties_5))
 server_properties.write(str(whitelist))
+server_properties.write(str(text_for_server_properties_4))
+server_properties.write(str(pvp))
+server_properties.write(str(text_for_server_properties_6))
