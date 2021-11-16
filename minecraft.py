@@ -3,7 +3,7 @@
 # if u dont use Python 3, dont use this. urllib dont working in Python2
 # if u seek some bug, write me in Telegram: @YaFlay
 # if u dont have C:/ disk, dont use this Python code, this crashed the code
-# Version: 1.3.3!
+# Version: 1.3.4!
 # for free using with my link for my github.com
 import os 
 import urllib.request
@@ -94,10 +94,14 @@ java -Xmx1024M -Xms1024M -jar server.jar nogui
 #     first checkbox command
 def server_properties_button():
      os.chdir('C:/minecraft')
-     server_properties = open('server.properties', 'w+')
-     server_properties.write(str(server_text))
-     print('Creating server.properties')
+     url_server_properties = 'https://raw.githubusercontent.com/YaFlay/Minecraft_server_creating/main/server_properties.py'
+     if os.path.isfile('C:/minecraft/server.properties'):
+          os.remove('C:/minecraft/server.properties')
+     pass
+     urllib.request.urlretrieve(url_server_properties, 'C:/minecraft/server_properties.py')
+     os.system('python3 server_properties.py')
      messagebox.showinfo('server.properties created', 'Minecraft server.properties created Press OK for leave')
+     os.remove('C:/minecraft/server_properties.py')
      
 # second checkbox command
 def close_command_button():
@@ -284,9 +288,7 @@ close_command.set(True)
 close_command = Checkbutton(window, text='4) Close minecraft.py file', var=close_command, command=close_command_button)  
 close_command.grid(column=1, row=4) 
 # replace minecraft.py command
-open_folder = BooleanVar()  
-open_folder.set(True)  
-open_folder = Checkbutton(window, text='Open minecraft server folder', var=close_command, command=folder)  
+open_folder = Button(window, text='Open minecraft server folder', command=folder)  
 open_folder.grid(column=1, row=5) 
 # third checkbox
 button = Button(window, text='OK', command=ok)
