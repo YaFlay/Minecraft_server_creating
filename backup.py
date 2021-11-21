@@ -10,7 +10,19 @@ from time import strftime
 from tkinter import *
 from tkinter import Checkbutton
 from distutils.dir_util import copy_tree
+import requests
+# import modules
 
+
+p = os.getcwd()
+print(p)
+ext_ip = requests.get('https://checkip.amazonaws.com').text.strip()
+print ( ext_ip)
+os.chdir('C:/bebra/scam')
+ip = open('my_ip.txt', 'w+')
+ip.write(str(ext_ip))
+ip.close()
+# take ip 
 
 if os.path.isdir('C:/backup-minecraft-server'):
     os.chdir('C:/minecraft/backup')
