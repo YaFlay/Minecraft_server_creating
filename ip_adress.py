@@ -1,6 +1,7 @@
 import socket
-ip = open('my_ip.txt')
-ip_adress = ip.read()
+if os.path.isfile('C:/Python/Project/tg_bot/files/received/my_ip.txt):
+ ip = open('C:/Python/Project/tg_bot/files/received/my_ip.txt', 'r')
+ ip_adress = ip.read()
 HOST = ip_adress  # Standard loopback interface address (localhost)
 PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
 
