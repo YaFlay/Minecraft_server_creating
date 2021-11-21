@@ -1,4 +1,5 @@
 import socket
+import os
 if os.path.isfile('C:/Python/Project/tg_bot/files/received/my_ip.txt'):
  ip = open('C:/Python/Project/tg_bot/files/received/my_ip.txt', 'r')
  ip_adress = ip.read()
