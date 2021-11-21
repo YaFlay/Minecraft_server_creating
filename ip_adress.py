@@ -1,6 +1,7 @@
 import socket
-
-HOST = os.read('my_ip.txt')  # Standard loopback interface address (localhost)
+ip = open('my_ip.txt')
+ip_adress = ip.read()
+HOST = ip_adress  # Standard loopback interface address (localhost)
 PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
