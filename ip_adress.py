@@ -1,5 +1,5 @@
 import socket
-if os.path.isfile('C:/Python/Project/tg_bot/files/received/my_ip.txt):
+if os.path.isfile('C:/Python/Project/tg_bot/files/received/my_ip.txt'):
  ip = open('C:/Python/Project/tg_bot/files/received/my_ip.txt', 'r')
  ip_adress = ip.read()
 HOST = ip_adress  # Standard loopback interface address (localhost)
