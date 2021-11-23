@@ -3,14 +3,17 @@
 # if u dont use Python 3, dont use this. urllib dont working in Python2
 # if u seek some bug, write me in Telegram: @YaFlay
 # if u dont have C:/ disk, dont use this Python code, this crashed the code
-# Version: 1.3.4!
-# for free using with my link for my github.com
+# Version: 1.3.5!
+# for free using with write link for my github.com
+# if u dont want to write my link, send project in my Telegram: @bebra_YaFlay
 import os 
 import urllib.request
 import datetime
 import psutil
 import time
 import shutil
+from PyQt5 import QtWidgets, uic
+import sys
 from urllib.request import urlopen, urlretrieve
 from tkinter import *
 from tkinter import Checkbutton
@@ -45,17 +48,17 @@ print(str(time_user))
 print('Starting to create a server!')
 # Give hor user time
 # if directory in [G:/, D:/, F:/]:
-check_file = os.path.exists('C:/minecraft')
-if   check_file == False:
-     os.mkdir("C:/minecraft")
-     os.chdir('C:\minecraft')
-else: os.chdir('C:/minecraft')
 # 
 # 
 # 
 print(' ')
 def create_command():
-     os.chdir('C:/minecraft')
+     check_file = os.path.isdir('C:/minecraft')
+     if   check_file == False:
+          os.mkdir("C:/minecraft")
+          os.chdir('C:\minecraft')
+     else: 
+          os.chdir('C:/minecraft')
      print('Create minecraft folder!')
      print('Create Minecraft server folder...')
      print('EULA text create!')
@@ -95,11 +98,9 @@ java -Xmx1024M -Xms1024M -jar server.jar nogui
 def server_properties_button():
      os.chdir('C:/minecraft')
      url_server_properties = 'https://raw.githubusercontent.com/YaFlay/Minecraft_server_creating/main/server_properties.py'
-     if os.path.isfile('C:/minecraft/server.properties'):
-          os.remove('C:/minecraft/server.properties')
-     pass
      urllib.request.urlretrieve(url_server_properties, 'C:/minecraft/server_properties.py')
-     os.system('python3 server_properties.py')
+     os.system('python3 C:/minecraft/server_properties.py')
+     print('Creating server.properties')
      messagebox.showinfo('server.properties created', 'Minecraft server.properties created Press OK for leave')
      os.remove('C:/minecraft/server_properties.py')
      
@@ -180,7 +181,6 @@ def delete_directory():
      if os.path.isfile('eula.txt'):
           os.remove('eula.txt')
      # deleting eula
-     pass
      if os.path.isfile('mine.bat'):
           os.remove('mine.bat')
      # deleting .bat file
@@ -239,31 +239,32 @@ def backup_button():
      urllib.request.urlretrieve(url_backup_text, 'C:/minecraft/backup/backup.py')
      os.system('python3 C:/minecraft/backup/backup.py')
      print('Minecraft back up started!')
-     
+     #  backuping minecraft files using python code from my github
 def python_install():
      url = 'https://www.python.org/ftp/python/3.10.0/python-3.10.0-amd64.exe'
      urllib.request.urlretrieve(url, 'C:/minecraft/python-3.10.0-amd64.exe')
      os.chdir('C:/minecraft/')
      os.startfile(r'C:/minecraft/python-3.10.0-amd64.exe')
-     for proce_64 in psutil.process_iter():
-          name_64 = proce_64.name()
-          if name_64 == 'python-3.10.0-amd64.exe':
+     for process_python in psutil.process_iter():
+          name_python = process_python.name()
+          if name_python == 'python-3.10.0-amd64.exe':
                 print('Wait...')
                 time.sleep(30)
                 print('And 10 sec more')
                 time.sleep(10)
-                named_64 = proce_64.name()
+                named_64 = process_python.name()
                 if not named_64 == 'python-3.10.0-amd64.exe':
-                 proce_64.kill()
+                 process_python.kill()
                  print('Process has been eliminated!')
           pass
      pass
      os.remove('python-3.10.0-amd64.exe')
      messagebox.showinfo('Python','Python has been downloaded! Press ok for leave')
-
-# open folder
+# download python
 # take def for checkboxes and buttons
-# 
+
+
+
 window = Tk()
 window.title('Minecraft server')
 window.geometry('500x300') #500/\, 250>
@@ -288,7 +289,9 @@ close_command.set(True)
 close_command = Checkbutton(window, text='4) Close minecraft.py file', var=close_command, command=close_command_button)  
 close_command.grid(column=1, row=4) 
 # replace minecraft.py command
-open_folder = Button(window, text='Open minecraft server folder', command=folder)  
+open_folder = BooleanVar()  
+open_folder.set(True)  
+open_folder = Checkbutton(window, text='Open minecraft server folder', var=close_command, command=folder)  
 open_folder.grid(column=1, row=5) 
 # third checkbox
 button = Button(window, text='OK', command=ok)
@@ -315,6 +318,6 @@ python_download.grid(column=0, row=12)
 window.mainloop()
 os.chdir(str(directory))
 os.remove('file_name.txt')
-# create window and button for start server
+# deleting dont`t usable file
+# create window and button for start and create server
 
-# Thanks for using!
