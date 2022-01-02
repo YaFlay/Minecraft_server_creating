@@ -9,7 +9,7 @@ if not path.isfile('/windows.py'): urlretrieve(windows, str(cwd)+'/windows.py')
 commands = 'https://raw.githubusercontent.com/YaFlay/Minecraft_server_creating/main/commands.py'
 if not path.isfile('/commands.py'): urlretrieve(commands, str(cwd)+'/commands.py')
 #   download commands.py
-installer = 'https://raw.githubusercontent.com/YaFlay/Minecraft_server_creating/main/installer.py'
-if not path.isfile('/installer.py'): urlretrieve(installer, str(cwd)+'/installer.py')
+installer = 'https://raw.githubusercontent.com/YaFlay/Minecraft_server_creating/main/intex.py'
+if not path.isfile('/intex.py'): urlretrieve(installer, str(cwd)+'/intex.py')
 #   download commands.py
 system('python3 '+ str(cwd)+'/windows.py')
