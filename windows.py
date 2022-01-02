@@ -32,9 +32,6 @@ def windows():
     open_folder = Checkbutton(window, text='Open minecraft server folder', var=close_command, command=folder)  
     open_folder.grid(column=1, row=5) 
     # third checkbox
-    button = Button(window, text='OK', command=ok)
-    button.grid(column=1, row=7)
-    # close program button
     starting_button = Button(window, text='Start server and open server.properties!', command=start)
     starting_button.grid(column=1, row=6)
     # starting server button
