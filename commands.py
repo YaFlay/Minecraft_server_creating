@@ -1,5 +1,5 @@
 from tkinter import messagebox
-from os import chdir, mkdir, remove, system, startfile, path, listdir, popen
+from os import chdir, getcwd, mkdir, remove, system, startfile, path, listdir, popen
 from shutil import rmtree
 from datetime import datetime, date
 from urllib.request import urlopen, urlretrieve
@@ -75,9 +75,9 @@ def server_properties_button():
 
 def close_command_button():
      remove(str(__file__))
-     remove('index.py')
-     remove('windows.py')
-     remove('installer.py')
+     remove(str(getcwd)+'index.py')
+     remove(str(getcwd)+'windows.py')
+     remove(str(getcwd)+'installer.py')
      messagebox.showinfo('file deleted', 'minecraft.exe closed and deleted! Press OK for leave')
 #    deleting main file
 
