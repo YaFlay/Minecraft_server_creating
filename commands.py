@@ -75,9 +75,9 @@ def server_properties_button():
 
 def close_command_button():
      remove(str(__file__))
-     remove(str(getcwd)+'index.py')
-     remove(str(getcwd)+'windows.py')
-     remove(str(getcwd)+'installer.py')
+     remove(str(getcwd())+'index.py')
+     remove(str(getcwd())+'windows.py')
+     remove(str(getcwd())+'installer.py')
      messagebox.showinfo('file deleted', 'minecraft.exe closed and deleted! Press OK for leave')
 #    deleting main file
 
