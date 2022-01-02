@@ -1,6 +1,6 @@
 from tkinter import Tk, BooleanVar, Button, Checkbutton
 from commands import *
-from installer import *
+from intex import python_install, java_download
 from os import remove, getcwd
 
 remove(str(getcwd())+'/index.py')
@@ -40,8 +40,7 @@ starting_button.grid(column=1, row=6)
 delete_button=Button(window, text='Delete folder and files', command=delete_directory)
 delete_button.grid(column=1, row=10)
 # delete folder button
-
-java_32=Button(window, text='Downloading Java', command=java_windows)
+java_32=Button(window, text='Downloading Java', command=java_download)
 java_32.grid(column=1, row=11)
 # java for x32
 backup=Button(window, text='Backup minecraft-server files', command=backup_button)
