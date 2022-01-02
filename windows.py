@@ -1,4 +1,3 @@
-from minecraft_server_installer import *
 from tkinter import Tk, BooleanVar, Button, Checkbutton
 from commands import *
 
@@ -55,3 +54,4 @@ def windows():
     window.mainloop()
     # create window and button for start and create server
 # creating def for index.py 
+windows()
