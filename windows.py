@@ -3,7 +3,7 @@ from commands import *
 from installer import *
 from os import remove, getcwd
 
-remove(str(getcwd)+'/index.py')
+remove(str(getcwd())+'/index.py')
 # remove installer
 window=Tk()
 window.title('Minecraft server')
