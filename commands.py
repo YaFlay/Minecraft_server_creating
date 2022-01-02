@@ -82,9 +82,7 @@ def close_command_button():
      os.remove('windows.py')
      messagebox.showinfo('file deleted', 'minecraft.exe closed and deleted! Press OK for leave')
 #    deleting main file
-def ok():
-     window.destroy()
-     # close window button
+
 
 def start():
      os.chdir('C:/minecraft')
